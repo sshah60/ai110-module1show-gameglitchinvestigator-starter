@@ -26,6 +26,8 @@ When I first ran the game, it looked like a normal number guessing game where I 
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
 - Give one example of an AI suggestion you did not accept as written (including what the AI suggested, why you rejected or changed it, and how you verified your version). It does not have to be a suggestion that was wrong: over-engineered, out of scope, harder to read, or a poor fit for this codebase all count.
 
+I used ChatGPT and Claude to help debug the game and think through possible fixes. One correct suggestion was to add range validation to `parse_guess()` and move the logic into `logic_utils.py`; I verified it with pytest and by testing invalid guesses in the Streamlit app. I did not follow an AI suggestion to focus on the difficulty bug because I could not reproduce its exact behavior reliably. Instead, I focused on the attempt-counting and hint bugs, which I verified through testing and the live game.
+
 ---
 
 ## 3. Debugging and testing your fixes
@@ -35,11 +37,15 @@ When I first ran the game, it looked like a normal number guessing game where I 
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
 
+I considered a bug fixed only after it worked both in pytest and in the Streamlit game. I ran the full pytest suite and all 4 tests passed. I also manually tested invalid guesses, higher/lower hints, and the game-over behavior to make sure the fixes worked correctly. AI helped me create and understand the pytest test for out-of-range guesses.
+
 ---
 
 ## 4. What did you learn about Streamlit and state?
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+
+Streamlit reruns the app from top to bottom whenever the user interacts with it. Session state lets the app remember important values, such as the secret number, score, attempts, and game status, between those reruns. Without session state, those values could reset every time the page reruns.
 
 ---
 
@@ -49,3 +55,5 @@ When I first ran the game, it looked like a normal number guessing game where I 
   - This could be a testing habit, a prompting strategy, or a way you used Git.
 - What is one thing you would do differently next time you work with AI on a coding task?
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+
+One habit I want to keep using is testing each bug separately before moving on to the next one. Next time I use AI for coding, I would give it smaller, more specific problems instead of asking for large changes at once. This project showed me that AI-generated code can be useful, but it still needs to be checked, tested, and understood before trusting it.

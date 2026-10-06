@@ -29,25 +29,35 @@ It wrote the code, ran away, and now the game is unplayable.
 - [ ] Detail which bugs you found.
 - [ ] Explain what fixes you applied.
 
+The purpose of the game is to guess a randomly generated number within a limited number of attempts while using higher/lower hints.
+
+I found several bugs, including guesses outside the allowed range being accepted, incorrect higher/lower hints, and the attempt count behaving incorrectly.
+
+I fixed the input validation so guesses outside the allowed range are rejected, corrected the higher/lower hint logic, and fixed the attempt counting so invalid guesses do not use attempts and the count does not go below zero. I also moved core logic into `logic_utils.py` and added pytest coverage for the fixes.
+
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. The player starts a new game and is told to guess a number within the allowed range.
+2. The player enters a guess that is too low, and the game tells them to go higher.
+3. The player enters a guess that is too high, and the game tells them to go lower.
+4. The player enters the correct number, and the game displays a winning message and final score.
+5. Invalid guesses outside the allowed range are rejected instead of being counted as attempts.
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
 ## 🧪 Test Results
 
-```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
-```
+```text
+python -m pytest
+4 passed
+
+
+If you want to be a little safer/more complete, rerun:
+
+```bash
+python -m pytest
 
 ## 🚀 Stretch Features
 
