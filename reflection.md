@@ -8,15 +8,15 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
-**Bug Reproduction Log**
+When I first ran the game, it looked like a normal number guessing game where I had to guess a number between 1 and 100 within a limited number of attempts. However, I  noticed that the game accepted guesses outside of the intended range instead of rejecting them. I also noticed that the difficulty levels seemed to work backwards, making the easier setting harder and the harder setting easier. Finally, the game allowed the number of remaining attempts to go below zero instead of ending when no attempts were left.
 
-Document at least 3 bugs you found. Add rows as needed.
+**Bug Reproduction Log**
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Enter `34732849372` or `-3` as a guess | The game should reject the input because guesses must be between 1 and 100 | The game accepts the number and gives a normal "Go Higher" or "Go Lower" hint | No console error; incorrect behavior appears in the game UI |
+| Select the Easy and Hard difficulty settings | Easy should make the game easier and Hard should make the game harder | The difficulty behavior appears reversed, with Easy behaving harder and Hard behaving easier | No console error; incorrect behavior appears in the game UI |
+| Continue guessing after the remaining attempts reach `0` | The game should stop accepting guesses and end the round | The game continues accepting guesses and the remaining attempts become negative | No console error; attempts displayed below `0` |
 
 ---
 
